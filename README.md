@@ -7,7 +7,7 @@
 #### Run a container from an image   
 ``` docker run -it --rm --init -p <host_port>:<container_port> <image_name> ``` 
 
-####Bind mount project with the docker container
+#### Bind mount project with the docker container
 ```
 docker run -it --init -p 3000:3000 -v "$(pwd)":/developer/nodejs/node-bind-mount-project app-bind-mount-node
 ```
