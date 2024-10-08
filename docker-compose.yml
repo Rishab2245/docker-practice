@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  express_server:
+    build: ./express-server
+    image: express-server:latest
+    container_name: express_server
+    init: true
+    ports:
+      - "4000:4000"
+    networks:
+      - express-network
+    volumes:
+      - type: bind
+        source: .
+        target: /developer/nodejs/express-project
+      - express-server-nodemodules:/developer/nodejs/express-project/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+  app_bind_mount_node:
+    build: ./app-bind-mount-node
+    image: app-bind-mount-node:latest
+    container_name: app_bind_mount_node
+    init: true
+    ports:
+      - "3000:3000"
+    networks:
+      - express-network
+    volumes:
+      - type: bind
+        source: .
+        target: /developer/nodejs/node-bind-mount-project
+      - app-bind-mount-node-nodemodules:/developer/nodejs/node-bind-mount-project/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+volumes:
+  express-server-nodemodules:
+  app-bind-mount-node-nodemodules:
+
+networks:
+  express-network:
