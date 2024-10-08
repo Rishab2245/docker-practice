@@ -39,3 +39,7 @@ volumes:
 
 networks:
   express-network:
+
+#docker build -t express-server .
+#docker run -it --rm --init --name app_bind_mount_node --network express-network -p 3000:3000 --mount type=bind,source="$(pwd)",target=/developer/nodejs/node-bind-mount-project -v app-bind-mount-node-nodemodules:/developer/nodejs/node-bind-mount-project/node_modules -e CHOKIDAR_USEPOLLING=true app-bind-mount-node:latest
+#docker run -it --rm --init --name express_server --network express-network -p 4000:4000 --mount type=bind,source="$(pwd)",target=/developer/nodejs/express-project -v express-server-nodemodules:/developer/nodejs/express-project/node_modules -e CHOKIDAR_USEPOLLING=true express-server:latest bash
